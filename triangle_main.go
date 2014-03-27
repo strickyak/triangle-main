@@ -68,8 +68,9 @@ func (h H) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 }
 
 func main() {
-	var myHandler H
+	flag.Parse()
 
+	var myHandler H
 	s := &http.Server{
 		Addr:           fmt.Sprintf(":%d", *PORT),
 		Handler:        myHandler,
