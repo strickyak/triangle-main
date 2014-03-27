@@ -1,3 +1,13 @@
+/*
+	HTTP Server produces a PNG given a URL with 9-tuples in the path:
+
+		x1,y1,x2,y2,x3,y3,r,g,b
+
+	(x1, y2), (x2, y2), (x3, y3) are corners of triangle.
+	Visible screen is real 0..100 on both x and y.
+	r, g, & b are in 0..255.
+	Background is black.
+*/
 package main
 
 import (
