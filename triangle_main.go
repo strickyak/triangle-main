@@ -13,7 +13,6 @@ package main
 import (
 	"flag"
 	"fmt"
-	// "html"
 	"log"
 	"net/http"
 	"regexp"
@@ -28,16 +27,6 @@ var WIDTH = flag.Int("w", 640, "Width of PNG in pixels")
 var HEIGHT = flag.Int("h", 360, "Height of PNG in pixels")
 
 var notnum = regexp.MustCompile("[^0-9]+")
-
-/*
-var colors = []canvas.Color{
-	canvas.RGB(0, 0, 0),
-	canvas.RGB(255, 255, 255),
-	canvas.RGB(255, 0, 0),
-	canvas.RGB(0, 255, 0),
-	canvas.RGB(0, 0, 255),
-}
-*/
 
 type H complex128
 
@@ -57,13 +46,15 @@ func (h H) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 
 	can := canvas.NewCanvas(*WIDTH, *HEIGHT)
+	can.Grid(50, canvas.RGB(20, 20, 20))
+
 	for i := 0; i < len(nums)-8; i += 9 {
-		x1 := int(nums[i+0] / 100.0 * float64(*WIDTH))
-		y1 := int(nums[i+1] / 100.0 * float64(*HEIGHT))
-		x2 := int(nums[i+2] / 100.0 * float64(*WIDTH))
-		y2 := int(nums[i+3] / 100.0 * float64(*HEIGHT))
-		x3 := int(nums[i+4] / 100.0 * float64(*WIDTH))
-		y3 := int(nums[i+5] / 100.0 * float64(*HEIGHT))
+		x1 := int(nums[i+0])
+		y1 := int(nums[i+1])
+		x2 := int(nums[i+2])
+		y2 := int(nums[i+3])
+		x3 := int(nums[i+4])
+		y3 := int(nums[i+5])
 
 		red := byte(nums[i+6])
 		green := byte(nums[i+7])
